@@ -49,7 +49,7 @@ namespace gr {
       d_not_Found = 0;
       preambleDetection_impl::set_new_channel(channel);
       d_samples_processed = 2000;
-      message_port_register_out(PDU_PORT_ID);
+      message_port_register_out(gr::blocks::pdu::pdu_port_id());
       d_type = gr::blocks::pdu::byte_t;
       d_pdu_meta = pmt::PMT_NIL;
       d_pdu_vector = pmt::PMT_NIL;
@@ -167,7 +167,7 @@ namespace gr {
 
                 // Send msg
                 pmt::pmt_t msg = pmt::cons(d_pdu_meta, d_pdu_vector);
-                message_port_pub(PDU_PORT_ID, msg);
+                message_port_pub(gr::blocks::pdu::pdu_port_id(), msg);
 
               }
               break;

@@ -277,7 +277,7 @@ namespace gr {
         }
         d_pdu_vector = gr::blocks::pdu::make_pdu_vector(d_type, d_channels, 23);
         pmt::pmt_t msg = pmt::cons(d_pdu_meta, d_pdu_vector);
-        message_port_pub(PDU_PORT_ID, msg);
+        message_port_pub(gr::blocks::pdu::pdu_port_id(), msg);
         std::cout << std::endl;
       }
 
@@ -543,7 +543,7 @@ namespace gr {
       message_port_register_in(pmt::mp("Msg"));
       set_msg_handler(pmt::mp("Msg"), boost::bind(&Despreader_impl::callback, this, _1));
       crc_tab16_init = false;
-      message_port_register_out(PDU_PORT_ID);
+      message_port_register_out(gr::blocks::pdu::pdu_port_id());
       d_type = gr::blocks::pdu::byte_t;
       d_pdu_meta = pmt::PMT_NIL;
       d_pdu_vector = pmt::PMT_NIL;
